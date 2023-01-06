@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/database/entities';
 import { CreateUserDto } from 'src/database/entities/user-authentication/dtos/user.dtos';
@@ -17,7 +17,26 @@ export class UserService {
   async createUser(createUserDto: CreateUserDto) {
     const newUser = this.userRepository.create(createUserDto);
     newUser.username = newUser?.username?.toLowerCase();
-    return await this.userRepository.save(newUser);
+
+    try {
+      return await this.userRepository.save(newUser);
+    } catch (error) {
+      // TODO: Find a better way to handle returned errors
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: {
+            message: error?.driverError?.detail,
+            name: error?.driverError?.name,
+            code: error?.driverError?.code,
+          },
+        },
+        HttpStatus.BAD_REQUEST,
+        {
+          cause: error,
+        },
+      );
+    }
   }
 
   async findUsersByUuid(uuid: string) {

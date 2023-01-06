@@ -1,8 +1,11 @@
+import { User } from 'src/database/entities';
 import {
   BaseEntity,
   Column,
   CreateDateColumn,
   Generated,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -14,6 +17,10 @@ export class HMISBaseEntity extends BaseEntity {
     default: () => 'CURRENT_TIMESTAMP',
   })
   createDateTime: Date;
+
+  @OneToOne((type) => User)
+  @JoinColumn()
+  user: User;
 
   @Column({ name: 'created_by', type: 'int', default: 1 })
   createdBy: number;
