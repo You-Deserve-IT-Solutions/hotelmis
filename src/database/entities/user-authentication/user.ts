@@ -20,6 +20,7 @@ export class User extends HMISBaseEntity {
     name: 'email',
     nullable: false,
     default: '',
+    unique: true,
   })
   email: string;
 
