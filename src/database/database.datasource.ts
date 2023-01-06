@@ -7,4 +7,6 @@ export const AppDataSource = new DataSource({
   username: 'hotelmis',
   password: 'Hotel@MIS',
   database: 'hotelmis',
+  synchronize: true, // Set false in production
+  entities: ['src/database/entities/**/*.ts'],
 });
