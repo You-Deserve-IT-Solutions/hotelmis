@@ -20,9 +20,9 @@ export class UserController {
     return this.userService.getUsers();
   }
 
-  @Get(':id')
-  findUsersById(@Param('id', ParseIntPipe) id: number) {
-    return this.userService.findUsersById(id);
+  @Get(':uuid')
+  findUsersByUuid(@Param('uuid') uuid: string) {
+    return this.userService.findUsersByUuid(uuid);
   }
 
   @Post('')

@@ -14,12 +14,13 @@ export class UserService {
     return await this.userRepository.find();
   }
 
-  createUser(createUserDto: CreateUserDto) {
+  async createUser(createUserDto: CreateUserDto) {
     const newUser = this.userRepository.create(createUserDto);
-    return this.userRepository.save(newUser);
+    newUser.username = newUser?.username?.toLowerCase();
+    return await this.userRepository.save(newUser);
   }
 
-  findUsersById(id: number) {
-    return this.userRepository.findOne({ where: { id } });
+  async findUsersByUuid(uuid: string) {
+    return await this.userRepository.findOne({ where: { uuid } });
   }
 }

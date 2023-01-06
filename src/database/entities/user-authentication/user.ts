@@ -12,6 +12,7 @@ export class User extends HMISBaseEntity {
   @Column({
     nullable: false,
     default: '',
+    unique: true,
   })
   username: string;
 
