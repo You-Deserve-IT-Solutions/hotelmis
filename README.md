@@ -74,5 +74,5 @@ Nest is [MIT licensed](LICENSE).
 
 ## Usage (API)
 
-- **`USER`**
+- **`USER, Person & Client`**
   - [**`User AUthentication, Person and Client Module`**](https://github.com/You-Deserve-IT-Solutions/hotelmis/blob/master/documents/USERMODULE.md)
