@@ -3,13 +3,13 @@ import { IsNotEmpty, Length, MinLength } from 'class-validator';
 export class CreatePersonDto {
   @IsNotEmpty()
   @MinLength(2)
-  firstname: string;
+  firstName: string;
 
-  middlname: string;
+  middleName: string;
 
   @IsNotEmpty()
   @MinLength(2)
-  lastname: string;
+  lastName: string;
 
   @Length(1)
   gender: string;
