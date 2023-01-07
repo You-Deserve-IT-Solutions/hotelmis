@@ -1,17 +1,10 @@
 import { HMISDataBaseEntity } from 'src/core/entities/data-base-entity';
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
-import { Users } from '../user-authentication/user';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Person extends HMISDataBaseEntity {
   @PrimaryGeneratedColumn({
-    type: 'int',
+    type: 'bigint',
     name: 'person_id',
   })
   id: number;

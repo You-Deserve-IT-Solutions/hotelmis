@@ -5,7 +5,7 @@ import { Person } from '../person/person';
 @Entity()
 export class Client extends HMISDataBaseEntity {
   @PrimaryGeneratedColumn({
-    type: 'int',
+    type: 'bigint',
     name: 'client_id',
   })
   id: number;
