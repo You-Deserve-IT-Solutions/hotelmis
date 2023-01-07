@@ -1,22 +1,31 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/database/entities';
+import { Users } from 'src/database/entities';
 import { CreateUserDto } from 'src/database/entities/user-authentication/dtos/user.dtos';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(User) private readonly userRepository: Repository<User>,
+    @InjectRepository(Users) private readonly userRepository: Repository<Users>,
   ) {}
 
   async getUsers() {
-    return await this.userRepository.find();
+    return await this.userRepository.find({
+      relations: {
+        createdBy: true,
+      },
+    });
   }
 
   async createUser(createUserDto: CreateUserDto) {
     const newUser = this.userRepository.create(createUserDto);
     newUser.username = newUser?.username?.toLowerCase();
+    if (newUser.createdBy) {
+      newUser.createdBy = (await this.findUsersByUuid(
+        newUser?.createdBy?.uuid,
+      )) as Users;
+    }
 
     try {
       return await this.userRepository.save(newUser);

@@ -2,7 +2,7 @@ import { HMISBaseEntity } from 'src/core/entities/base-entity';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class User extends HMISBaseEntity {
+export class Users extends HMISBaseEntity {
   @PrimaryGeneratedColumn({
     type: 'int',
     name: 'user_id',

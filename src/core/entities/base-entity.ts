@@ -1,10 +1,12 @@
-import { User } from 'src/database/entities';
+import { Users } from 'src/database/entities';
 import {
   BaseEntity,
   Column,
   CreateDateColumn,
   Generated,
   JoinColumn,
+  ManyToMany,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -18,12 +20,9 @@ export class HMISBaseEntity extends BaseEntity {
   })
   createDateTime: Date;
 
-  @OneToOne((type) => User)
-  @JoinColumn()
-  user: User;
-
-  @Column({ name: 'created_by', type: 'int', default: 1 })
-  createdBy: number;
+  @ManyToOne((type) => Users)
+  @JoinColumn({ name: 'created_by', referencedColumnName: 'id' })
+  createdBy: Users;
 
   @UpdateDateColumn({
     name: 'last_updated_date',
