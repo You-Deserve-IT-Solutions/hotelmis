@@ -1,7 +1,7 @@
-import { HMISBaseEntity } from 'src/core/entities/base-entity';
+import { HMISMetadataBaseEntity } from 'src/core/entities/metadata-base-entity';
 import { Column, PrimaryGeneratedColumn } from 'typeorm';
 
-export class userRole extends HMISBaseEntity {
+export class userRole extends HMISMetadataBaseEntity {
   @PrimaryGeneratedColumn({
     type: 'int',
     name: 'role_id',

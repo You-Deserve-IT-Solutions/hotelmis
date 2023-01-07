@@ -1,19 +1,22 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Users } from 'src/database/entities';
+import { Person, Users } from 'src/database/entities';
 import { CreateUserDto } from 'src/database/entities/user-authentication/dtos/user.dtos';
+import { PersonService } from 'src/modules/person/services/person/person.service';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(Users) private readonly userRepository: Repository<Users>,
+    private readonly personService: PersonService,
   ) {}
 
   async getUsers() {
     return await this.userRepository.find({
       relations: {
         createdBy: true,
+        person: true,
       },
     });
   }
@@ -22,9 +25,15 @@ export class UserService {
     const newUser = this.userRepository.create(createUserDto);
     newUser.username = newUser?.username?.toLowerCase();
     if (newUser.createdBy) {
-      newUser.createdBy = (await this.findUsersByUuid(
+      newUser.createdBy = (await this.personService.findPersonByUuid(
         newUser?.createdBy?.uuid,
-      )) as Users;
+      )) as Person;
+    }
+
+    if (newUser.person) {
+      newUser.person = (await this.personService.findPersonByUuid(
+        newUser?.person?.uuid,
+      )) as Person;
     }
 
     try {

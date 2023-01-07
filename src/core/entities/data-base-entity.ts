@@ -1,18 +1,15 @@
-import { Users } from 'src/database/entities';
+import { Person } from 'src/database/entities';
 import {
   BaseEntity,
   Column,
   CreateDateColumn,
   Generated,
   JoinColumn,
-  ManyToMany,
   ManyToOne,
-  OneToOne,
-  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
-export class HMISBaseEntity extends BaseEntity {
+export class HMISDataBaseEntity extends BaseEntity {
   @CreateDateColumn({
     name: 'created_date',
     type: 'timestamptz',
@@ -20,9 +17,9 @@ export class HMISBaseEntity extends BaseEntity {
   })
   createDateTime: Date;
 
-  @ManyToOne((type) => Users)
+  @ManyToOne((type) => Person)
   @JoinColumn({ name: 'created_by', referencedColumnName: 'id' })
-  createdBy: Users;
+  createdBy: Person;
 
   @UpdateDateColumn({
     name: 'last_updated_date',
@@ -37,4 +34,21 @@ export class HMISBaseEntity extends BaseEntity {
   @Column()
   @Generated('uuid')
   uuid: string;
+
+  @Column({ nullable: true, default: false })
+  voided: boolean;
+
+  @Column({
+    name: 'voided_date',
+    type: 'timestamptz',
+    nullable: true,
+  })
+  voidedDate: Date;
+
+  @ManyToOne((type) => Person)
+  @JoinColumn({ name: 'voided_by', referencedColumnName: 'id' })
+  voidedBy: Person;
+
+  @Column({ nullable: true, name: 'void_reason' })
+  voidReason: string;
 }

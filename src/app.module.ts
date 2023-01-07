@@ -4,8 +4,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import entities from './database/entities';
+import { ClientModule } from './modules/client/client.module';
+import { PersonModule } from './modules/person/person.module';
 import { UserAuthenticationModule } from './modules/user-authentication/user-authentication.module';
-
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -23,7 +24,9 @@ import { UserAuthenticationModule } from './modules/user-authentication/user-aut
       }),
       inject: [ConfigService],
     }),
+    PersonModule,
     UserAuthenticationModule,
+    ClientModule,
   ],
   controllers: [AppController],
   providers: [AppService],

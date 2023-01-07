@@ -1,8 +1,15 @@
-import { HMISBaseEntity } from 'src/core/entities/base-entity';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { HMISDataBaseEntity } from 'src/core/entities/data-base-entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Person } from '../person/person';
 
 @Entity()
-export class Users extends HMISBaseEntity {
+export class Users extends HMISDataBaseEntity {
   @PrimaryGeneratedColumn({
     type: 'int',
     name: 'user_id',
@@ -29,4 +36,8 @@ export class Users extends HMISBaseEntity {
     default: '',
   })
   password: string;
+
+  @OneToOne((type) => Person)
+  @JoinColumn({ name: 'person_id', referencedColumnName: 'id' })
+  person: Person;
 }
