@@ -72,19 +72,7 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 Nest is [MIT licensed](LICENSE).
 
-## API
+## Usage (API)
 
-# Users
-
-- Create user
-
-  ```
-  - API /api/users
-  - Method: POST
-  - Payload:
-          {
-            "username": "admin",
-            "email": "admin@gmail.com",
-            "password": "Admin123"
-          }
-  ```
+- **`USER`**
+  - [**`User AUthentication, Person and Client Module`**](https://github.com/You-Deserve-IT-Solutions/hotelmis/blob/master/documents/USERMODULE.md)
