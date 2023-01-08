@@ -34,6 +34,6 @@ export class AttributeValue extends HMISDataBaseEntity {
   user: Users;
 
   @ManyToOne((type) => Client)
-  @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
+  @JoinColumn({ name: 'client_id', referencedColumnName: 'id' })
   client: Client;
 }
