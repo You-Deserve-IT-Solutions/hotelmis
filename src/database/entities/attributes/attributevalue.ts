@@ -1,5 +1,8 @@
 import { HMISDataBaseEntity } from 'src/core/entities/data-base-entity';
 import { Column, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Client } from '../client/client';
+import { Person } from '../person/person';
+import { Users } from '../user-authentication/user';
 import { Attribute } from './attribute';
 
 export class AttributeValue extends HMISDataBaseEntity {
@@ -21,4 +24,16 @@ export class AttributeValue extends HMISDataBaseEntity {
   @ManyToOne((type) => Attribute)
   @JoinColumn({ name: 'attribute_id', referencedColumnName: 'id' })
   attribute: Attribute;
+
+  @ManyToOne((type) => Person)
+  @JoinColumn({ name: 'person_id', referencedColumnName: 'id' })
+  person: Person;
+
+  @ManyToOne((type) => Users)
+  @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
+  user: Users;
+
+  @ManyToOne((type) => Client)
+  @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
+  client: Client;
 }

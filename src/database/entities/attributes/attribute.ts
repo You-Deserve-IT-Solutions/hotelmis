@@ -37,4 +37,13 @@ export class Attribute extends HMISDataBaseEntity {
 
   @Column({ name: 'concept_attribute' })
   conceptAttribute: boolean;
+
+  @Column({ name: 'location_attribute' })
+  locationAttribute: boolean;
+
+  @Column({ name: 'reservation_scheduling_attribute' })
+  reservationSchedulingAttribute: boolean;
+
+  @Column({ name: 'order_attribute' })
+  orderAttribute: boolean;
 }
