@@ -1,10 +1,17 @@
 import { HMISDataBaseEntity } from 'src/core/entities/data-base-entity';
-import { Column, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Client } from '../client/client';
 import { Person } from '../person/person';
 import { Users } from '../user-authentication/user';
 import { Attribute } from './attribute';
 
+@Entity()
 export class AttributeValue extends HMISDataBaseEntity {
   @PrimaryGeneratedColumn({
     type: 'bigint',

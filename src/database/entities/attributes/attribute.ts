@@ -1,7 +1,8 @@
-import { HMISDataBaseEntity } from 'src/core/entities/data-base-entity';
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import { HMISMetadataBaseEntity } from 'src/core/entities/metadata-base-entity';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-export class Attribute extends HMISDataBaseEntity {
+@Entity()
+export class Attribute extends HMISMetadataBaseEntity {
   @PrimaryGeneratedColumn({
     type: 'int',
     name: 'attribute_id',

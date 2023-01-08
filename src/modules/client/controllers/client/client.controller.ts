@@ -25,7 +25,7 @@ export class ClientController {
 
   @Post('')
   @UsePipes(ValidationPipe)
-  createClient(@Body() createPersonDto: any) {
-    return this.clientService.createClient(createPersonDto);
+  createClient(@Body() createClientDto: any) {
+    return this.clientService.createClient(createClientDto);
   }
 }

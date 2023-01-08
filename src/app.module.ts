@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import entities from './database/entities';
+import { AttributesModule } from './modules/attributes/attributes.module';
 import { ClientModule } from './modules/client/client.module';
 import { PersonModule } from './modules/person/person.module';
 import { UserAuthenticationModule } from './modules/user-authentication/user-authentication.module';
@@ -27,6 +28,7 @@ import { UserAuthenticationModule } from './modules/user-authentication/user-aut
     PersonModule,
     UserAuthenticationModule,
     ClientModule,
+    AttributesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
